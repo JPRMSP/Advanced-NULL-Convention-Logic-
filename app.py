@@ -470,31 +470,3 @@ end architecture;
 
     st.markdown("---")
     st.info("Generated VHDL is behavioral and intended as a starting point for NCL gate libraries and for conversion to synthesizable constructs as needed. Use the code as a template for lab submissions; I can extend this to full synthesizable VHDL on request.")
-
-# -------------------------------
-# Mode: Quick Demos / Examples
-# -------------------------------
-elif mode == "Quick Demos / Examples":
-    st.header("Ready Examples, GitHub README & Deployment Helpers")
-    st.markdown("Use these quick demos to populate your project repo. Click to auto-fill a sample circuit and download README / deploy script.")
-    if st.button("Load Example: Dual-rail XOR-ish via TH22 chain"):
-        # create example circuit
-        st.session_state.circuit = Circuit()
-        st.session_state.circuit.inputs = {"A":(1,0), "B":(0,1)}
-        st.session_state.circuit.gates = {
-            "G1": Gate("G1","TH12",["A","B"], delay=1.0),
-            "G2": Gate("G2","TH22",["A","B"], delay=1.2)
-        }
-        st.session_state.circuit.outputs = {"OUT": "G2"}
-        st.success("Example loaded into workspace")
-    if st.button("Download Example README (GitHub-ready)"):
-        readme = f"# {project_name}\n\nAdvanced NCL Design Tool\n\nRun locally:\n```\nstreamlit run app.py\n```\n\nProject includes:\n- NCL simulator\n- FSM builder\n- Pipeline designer\n- MTCMOS visualizer\n- VHDL generator\n\nDeploy on Streamlit Cloud: push to GitHub and connect the repo.\n"
-        st.download_button("Download README.md", data=readme, file_name="README.md", mime="text/markdown")
-
-    st.markdown("---")
-    st.info("Tip: Push this repo to GitHub, enable Streamlit Cloud, and set the main file to app.py. I can create a CI workflow (GitHub Actions) on request to auto-deploy on push.")
-
-# -------------------------------
-# Footer / quick help
-# -------------------------------
-st.markdown("---")
